@@ -1,0 +1,29 @@
+[run]
+branch = True
+source =
+    data_model
+    strategy
+    backtest
+    report
+    data
+omit =
+    */tests/*
+    */__init__.py
+    ui/*
+    fetch_data.py
+    run_example.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    \.\.\.
+
+show_missing = True
+skip_covered = False
+precision = 1
+
+[html]
+directory = htmlcov

@@ -1,0 +1,45 @@
+# DeFi 收益轮动与自动复投回测平台 - 全局参数
+# 所有金融参数使用 Decimal 字符串表示以避免浮点精度损失
+
+# === 资金与时间步 ===
+initial_capital: "100000"          # 初始资金（计价本位）
+time_step: daily                   # 时间步粒度: daily | hourly
+top_n: 3                           # ScoringEngine 输出 Top-N 候选池
+
+# === 轮动门槛 (FR-04) ===
+tau_reset: "0.05"                  # τ-reset 偏离度阈值
+rotation_threshold: "0.01"         # 调仓增益阈值
+
+# === CARA 效用 (FR-03) ===
+cara_alpha: "2.0"                  # 风险厌恶系数
+
+# === 评分窗口 ===
+momentum_window: 14                # 动量 EWMA 窗口
+momentum_lambda: "0.85"            # EWMA 衰减系数
+vol_window: 30                     # 波动率窗口
+mdd_window: 90                     # MDD 窗口
+
+# === 多因子权重 (聚合时自动归一化到 1.0) ===
+weights:
+  momentum: "0.40"
+  vol_penalty: "0.25"
+  mdd_penalty: "0.20"
+  cara: "0.15"
+
+# === 复投 (FR-05) ===
+reinvest_window: 30                # 复投预演窗口（tick 数）
+risk_premium_multiplier: "1.5"     # 复投触发的风险溢价倍数
+
+# === 摩擦成本 ===
+gas_limits:
+  ROTATE: 350000
+  REINVEST: 180000
+  CLAIM: 80000
+slippage_steps:                    # 阶梯滑点 (trade_size / tvl) -> 滑点率
+  low: "0.001"                     # < 1%
+  mid: "0.003"                     # 1% ~ 5%
+  high: "0.008"                    # > 5%
+
+# === 复现性 (NFR-02) ===
+random_seed: 42
+decimal_precision: 28              # Decimal 上下文精度

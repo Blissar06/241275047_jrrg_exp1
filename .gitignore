@@ -1,0 +1,50 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ---- pytest / coverage / hypothesis ----
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.benchmarks/
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.iml
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- 项目数据缓存（可重新生成）----
+# DefiLlama API 缓存（fetch_data 一键重拉）
+data/.cache/
+# 回测落盘的 Parquet 日志（每次跑 run_example 重生成）
+data/output/
+htmlcov/
+
+# ---- 临时文件 / 编辑器锁 ----
+~$*.pptx
+~$*.docx
+~$*.xlsx
+*.tmp
+*.bak
+
+# ---- 个人调试文件（开发期生成）----
+_p1_*.txt
+_p2_*.txt
+_smoke.py
+_eval_*.py
+_test.*
+
+# ---- 大型可执行文件（PPT 例外，需要提交）----
+# docs/final_presentation*.pptx — 保留 PPT 提交
