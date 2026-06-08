@@ -10,7 +10,7 @@
 
 ---
 
-## ✨ 一句话
+## ✨ 项目概要
 
 在不接触链上的前提下，**用历史 / 真实链上数据回测 DeFi 收益池轮动策略**，量化收益、摩擦成本与归因分布。
 
@@ -244,10 +244,10 @@ theoretical_return = actual_return + Gas + Slippage + LVR + rotation_idle
 
 | 成员 | 主要模块 |
 |---|---|
-| A | `data_model/` · `data/onchain_fetcher.py` · 文档 |
-| B | `strategy/`（6 Scorer + 引擎 + 5 预设） |
-| C | `backtest/` · `report/` |
-| D | `ui/` · `tests/` · CI |
+| Xingrui Zhao | `data_model/` · `data/onchain_fetcher.py` · 文档 |
+| Ziqing Ji | `strategy/`（6 Scorer + 引擎 + 5 预设） |
+| Siyi Chen | `backtest/` · `report/` |
+| Jingcheng Wang | `ui/` · `tests/` · CI |
 
 ---
 
