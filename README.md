@@ -226,8 +226,8 @@ theoretical_return = actual_return + Gas + Slippage + LVR + rotation_idle
 
 ## 📺 答辩材料
 
-- **8 分钟 PPT**：[`docs/final_presentation.pptx`](docs/final_presentation.pptx)（18 张 · 科技风 · 含 demo.gif）
-- **截图集**：[`docs/screenshots/`](docs/screenshots/) 12 张高清图 + README 索引
+- **8 分钟 PPT**：[`docs/final_presentation.pptx`](docs/final_presentation.pptx)
+- **截图集**：[`docs/screenshots/`](docs/screenshots/) 
 - **测试矩阵**：[`tests/TEST_PLAN.md`](tests/TEST_PLAN.md)
 
 ---
