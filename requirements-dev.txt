@@ -1,0 +1,16 @@
+# ============================================================
+# 开发工具依赖 · 仅当需要重新生成 PPT / 截图 / GIF 时才装
+# 助教如果只评分项目本身，跳过这个文件即可
+# ============================================================
+
+-r requirements.txt
+
+# ---- 生成答辩材料 ----
+python-pptx>=0.6.21    # build_pptx.py
+lxml>=4.9.0            # python-pptx 内部依赖（直接 import）
+kaleido>=0.2.1         # capture_screenshots.py · plotly PNG 静态导出
+Pillow>=10.0.0         # build_demo_gif.py · GIF 合成
+
+# ---- 链上数据拉取 ----
+# DefiLlama API 客户端只用 stdlib urllib，不引入新依赖
+# fetch_data.py 跑只需要 requirements.txt 里的核心库

@@ -32,6 +32,8 @@
 
 ## 🚀 30 分钟快速复现
 
+> 📖 **助教评分流程**：请参考 **[docs/INSTALL_GUIDE.md](docs/INSTALL_GUIDE.md)**（含 Step-by-Step 验证清单 + 常见问题）
+
 ### 环境准备
 
 ```bash
