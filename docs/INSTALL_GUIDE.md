@@ -1,17 +1,9 @@
-# 助教评分操作指南 · 30 分钟跑通 Demo
+# 操作指南 
 
 > 对应评分项 **10 分 · README 清晰、报告规范、他人可复现**
 > 目标：从 git clone 到看到完整看板 ≤ 30 分钟
 
----
 
-## 🎯 你需要看到的最终效果
-
-1. **325 个测试全部通过**（30 秒）
-2. **端到端示例 7 项验收全过**（10 秒）
-3. **Streamlit 看板能跑出真实数据回测**（启动 5 秒 + 回测 < 1 秒）
-
----
 
 ## 📦 环境要求
 
@@ -26,16 +18,16 @@
 
 ---
 
-## 🚀 操作步骤（精确到秒）
+## 🚀 操作步骤
 
-### Step 1 · 克隆仓库（30 秒）
+### Step 1 · 克隆仓库
 
 ```bash
 git clone https://github.com/Blissar06/241275047_jrrg_exp1.git
 cd 241275047_jrrg_exp1
 ```
 
-### Step 2 · 创建虚拟环境（30 秒，可选但推荐）
+### Step 2 · 创建虚拟环境
 
 ```bash
 # Windows PowerShell
@@ -51,7 +43,7 @@ python -m venv venv
 source venv/bin/activate
 ```
 
-### Step 3 · 安装依赖（3 ~ 5 分钟）
+### Step 3 · 安装依赖
 
 ```bash
 pip install -r requirements.txt
@@ -59,9 +51,9 @@ pip install -r requirements.txt
 
 **依赖清单**：numpy / pandas / pyarrow / pyyaml / streamlit / plotly / pytest / **hypothesis** / **pytest-cov** / **pytest-benchmark** —— 共 10 个包。
 
-> ✅ 如果想重新生成 PPT/截图/GIF，再装 `pip install -r requirements-dev.txt`（含 python-pptx / lxml / kaleido / Pillow）；**但评分时不需要**，PPT 已经在 `docs/final_presentation.pptx`。
 
-### Step 4 · 跑全套测试（30 秒）⭐
+
+### Step 4 · 跑全套测试⭐
 
 ```bash
 pytest tests/ --ignore=tests/perf
@@ -81,7 +73,7 @@ pytest tests/ --ignore=tests/perf --cov --cov-report=term
 
 期望 `TOTAL ... 87.5%`。
 
-### Step 5 · 跑端到端示例（10 秒）⭐
+### Step 5 · 跑端到端示例⭐
 
 ```bash
 python run_example.py
@@ -101,7 +93,7 @@ python run_example.py
 === 全部验收通过 ===
 ```
 
-### Step 6 · 启动看板（5 秒）⭐
+### Step 6 · 启动看板⭐
 
 ```bash
 streamlit run ui/app.py
@@ -179,19 +171,9 @@ pytest tests/ --ignore=tests/perf
 
 ---
 
-## ⏱ 时间预算
 
-| 步骤 | 预计耗时 |
-|---|---|
-| Git clone | 30 s |
-| 创建 venv | 30 s |
-| pip install | **3 ~ 5 min**（最慢的一步） |
-| pytest 全测试 | 30 s |
-| run_example | 10 s |
-| streamlit 启动 + 操作 | 1 min |
-| **合计** | **6 ~ 8 分钟** |
 
-远低于 30 分钟预算。
+
 
 ---
 
@@ -207,15 +189,3 @@ pytest tests/ --ignore=tests/perf
 
 ---
 
-## ✅ 验收 Checklist
-
-> 助教可逐项打勾
-
-- [ ] Step 1 ~ 3 完成，环境就绪
-- [ ] Step 4 · `pytest tests/ --ignore=tests/perf` 输出 `325 passed`
-- [ ] Step 5 · `python run_example.py` 末尾输出 `=== 全部验收通过 ===`
-- [ ] Step 6 · Streamlit 看板成功打开，能跑出保守稳健策略 8.74% 年化的结果
-- [ ] 看了 docs/ 下的 PPT 与截图
-- [ ] 看了 tests/TEST_PLAN.md 的测试矩阵
-
-如果以上全 ✅，本项目满足课程评分标准 10 分的「他人可复现」要求。
