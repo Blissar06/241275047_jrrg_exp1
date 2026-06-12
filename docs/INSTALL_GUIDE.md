@@ -110,17 +110,6 @@ streamlit run ui/app.py
 
 ---
 
-## 🔬 评分项对应位置
-
-| 评分项 | 怎么验证 | 关键文件 |
-|---|---|---|
-| **30 分** 金融逻辑正确 / 公式无误 | Step 5 全 PASS · 守恒等式误差 < 0.001% | `report/attribution.py` + `tests/test_attribution.py` |
-| **25 分** 仿真闭环 / 交互可视化 | Step 6 看板 6 Tab 全部可用 | `ui/app.py` |
-| **20 分** 模块化 / 测试 / 性能 | Step 4 全 325 通过 + 覆盖率 87.5% | `tests/TEST_PLAN.md` |
-| **15 分** 场景设计 / 对比分析 | 看板「多策略对比 Tab」+ `blackbox/test_scenarios.py` | `tests/blackbox/test_scenarios.py` |
-| **10 分** README / 可复现 | 你**正在看**这份指南 + README.md | 本文件 |
-
----
 
 ## 🐛 常见问题与解决
 
