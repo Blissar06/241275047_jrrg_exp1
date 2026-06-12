@@ -172,6 +172,21 @@ def run_backtest(params: dict[str, Any]) -> dict[str, Any]:
     else:
         pool_df, gas_df = _load_real_csvs_auto(params["pool_csv"], params["gas_csv"])
 
+    # 按用户选择的日期范围截取（含端点）
+    date_from = params.get("date_from")
+    date_to = params.get("date_to")
+    if date_from is not None and date_to is not None:
+        df_from = pd.Timestamp(date_from)
+        df_to = pd.Timestamp(date_to)
+        pool_df = pool_df[(pool_df["timestamp"] >= df_from)
+                          & (pool_df["timestamp"] <= df_to)].reset_index(drop=True)
+        gas_df = gas_df[(gas_df["timestamp"] >= df_from)
+                        & (gas_df["timestamp"] <= df_to)].reset_index(drop=True)
+        if pool_df.empty or gas_df.empty:
+            raise ValueError(
+                f"选择的日期范围 [{date_from} ~ {date_to}] 内没有数据"
+            )
+
     snapshots = build_asset_snapshots(
         pool_df, gas_df, config={"momentum_window": 14},
     )
@@ -543,6 +558,41 @@ with st.sidebar:
         if not Path(gas_csv_path).exists():
             st.error(f"找不到 {gas_csv_path}")
 
+    # ----- 回测时间区间 -----
+    st.subheader("📅 回测时间区间")
+    # 探测当前数据源的可用日期范围（缓存，避免重复加载）
+    try:
+        if data_source == "合成数据":
+            _pool_probe, _ = _load_synthetic()
+        else:
+            if Path(pool_csv_path).exists() and Path(gas_csv_path).exists():
+                _pool_probe, _ = _load_real_csvs_auto(pool_csv_path, gas_csv_path)
+            else:
+                _pool_probe = None
+
+        if _pool_probe is not None and not _pool_probe.empty:
+            _ts = pd.to_datetime(_pool_probe["timestamp"])
+            min_d = _ts.min().date()
+            max_d = _ts.max().date()
+            st.caption(f"数据范围：{min_d} ~ {max_d}（共 {(max_d - min_d).days + 1} 天）")
+            date_range = st.slider(
+                "拖动选择回测起止日期",
+                min_value=min_d, max_value=max_d,
+                value=(min_d, max_d),
+                format="YYYY-MM-DD",
+                key="date_range",
+                help="可裁掉数据头尾，只回测某段时间",
+            )
+            date_from, date_to = date_range
+            days = (date_to - date_from).days + 1
+            st.caption(f"⏱ 已选 **{days} 天**（{date_from} → {date_to}）")
+        else:
+            date_from = date_to = None
+            st.warning("数据不存在，无法选择日期范围")
+    except Exception as _e:
+        date_from = date_to = None
+        st.warning(f"无法读取日期范围：{_e}")
+
     st.divider()
     st.header("策略预设")
 
@@ -667,6 +717,8 @@ if run_clicked:
         "data_source": "synthetic" if data_source == "合成数据" else "real",
         "pool_csv": pool_csv_path if data_source == "真实链上数据" else None,
         "gas_csv": gas_csv_path if data_source == "真实链上数据" else None,
+        "date_from": date_from,
+        "date_to": date_to,
         "initial_capital": initial_capital,
         "top_n": top_n,
         "threshold": threshold,
