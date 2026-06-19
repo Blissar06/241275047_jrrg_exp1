@@ -4,7 +4,6 @@
 > 团队：Xingrui Zhao（组长）· Ziqing Ji · Siyi Chen · Jingcheng Wang
 > 日期：2026 · 06 · 12
 > 仓库：https://github.com/Blissar06/241275047_jrrg_exp1
-> 字数统计：约 4,800 字
 
 ---
 
@@ -531,4 +530,4 @@ streamlit run ui/app.py
 ---
 
 **仓库**：https://github.com/Blissar06/241275047_jrrg_exp1
-**字数统计（不含代码块）**：约 **4,800 字**（≥ 3,000 字要求）
+
